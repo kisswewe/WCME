@@ -1,0 +1,117 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-touch-fullscreen" content="yes" />
+<meta name="format-detection" content="telephone=no"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="format-detection" content="telephone=no" />
+<meta name="msapplication-tap-highlight" content="no" />
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,minimum-scale=1" />
+<title>绑定福哈创特帐号</title>
+<link rel="stylesheet" type="text/css" href="../../css/base.css">
+<link rel="stylesheet" type="text/css" href="../../css/nctouch_member.css">
+</head>
+<body>
+<header id="header">
+	<div class="header-wrap">
+		<div class="header-l">
+			<a href="../cart_list.html">
+				<i class="back"></i>
+			</a>
+		</div>
+		<div class="header-title">
+			<h1>绑定福哈创特帐号</h1>
+		</div>
+	</div>
+</header>
+<div class="nctouch-main-layout">
+<div class="register-mobile-tip"> 特色商城绑定帐号信息</div>
+  <div class="nctouch-inp-con">
+    <ul class="form-box">
+      <li class="form-item">
+        <h4>帐号</h4>
+        <div class="input-box">
+          <input type="text" name="member_name" class="inp" maxlength="20" placeholder="请输入特色商城帐号" />
+          </div>
+      </li>
+      <li class="form-item">
+        <h4>密码</h4>
+        <div class="input-box">
+          <input type="password"  name="member_passwd" maxlength="20" size="10" class="inp" autocomplete="off" placeholder="请输入特色商城密码"/>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="register-mobile-tip"> 福哈创特系统绑定帐号信息</div>
+  <div class="nctouch-inp-con">
+    <ul class="form-box">
+      <li class="form-item">
+        <h4>帐号</h4>
+        <div class="input-box">
+          <input type="text" name="account" class="inp" maxlength="20" placeholder="请输入福哈创特系统帐号" />
+          </div>
+      </li>
+      <li class="form-item">
+        <h4>密码</h4>
+        <div class="input-box">
+          <input type="password" name="password" maxlength="20" size="10" class="inp" autocomplete="off" placeholder="请输入特色商城密码"/>
+        </div>
+      </li>
+      <!-- <li class="form-item">
+        <h4>验&nbsp;证&nbsp;码</h4>
+        <div class="input-box">
+          <input type="text" id="captcha" name="captcha" maxlength="4" size="10" class="inp" autocomplete="off" placeholder="输入图形验证码"/>
+          <span class="input-del code"></span> <a href="javascript:void(0)" id="refreshcode" class="code-img"><img border="0" id="codeimage" name="codeimage"></a>
+          <input type="hidden" id="codekey" name="codekey" value="">
+        </div>
+      </li> -->
+    </ul>
+    <div class="error-tips"></div>
+    <div class="form-btn"><a href="javascript:void(0);" class="btn" id="bindSubmit">立即绑定</a></div>
+  </div>
+</div>
+<footer id="footer" class="bottom"></footer>
+<script type="text/javascript" src="../../js/config.js"></script> 
+<script type="text/javascript" src="../../js/zepto.min.js"></script> 
+<script type="text/javascript" src="../../js/template.js"></script> 
+<script type="text/javascript" src="../../js/common.js"></script> 
+<script type="text/javascript" src="../../js/simple-plugin.js"></script> 
+<script type="text/javascript" src="../../js/tmpl/footer.js"></script>
+<script type="text/javascript">
+  //绑定福哈创特
+  $('#bindSubmit').on('click',function(){
+    var member_name = $('input[name="member_name"]').val();
+    var member_passwd = $('input[name="member_passwd"]').val();
+    var account = $('input[name="account"]').val();
+    var password = $('input[name="password"]').val();
+
+    if(member_name == '' || member_passwd == '' || account == '' || password == ''){
+        errorTipsShow('请填写帐号密码');
+        return;        
+    }
+    var $url = SiteUrl+"/index.php?act=buy&op=binding_operation";
+    var $data = {member_name:member_name,member_passwd:member_passwd,account:account,password:password};
+    $.post($url,$data,function(data){
+      if(data){
+        if(data.code == 200){
+          errorTipsShow('绑定成功');
+          // $('input[name="theo_account"]').val(data.theo_account);
+          // $('#teaoPoint').text(data.points);
+          // $('#tesePoint').text(calcPoint(data.points));
+          // setTimeout(function(){
+          //   $('.bind_bg').hide();
+          //   $('.teaoPoint').show().find('input[name="converPoint"]').removeAttr('disabled');
+          // },2000);
+        }else{
+          errorTipsShow(data.message);
+        }
+      }
+    },'json');
+  })
+</script>
+</body>
+</html>
