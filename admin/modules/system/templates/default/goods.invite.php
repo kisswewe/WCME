@@ -7,7 +7,7 @@
      <div class="ncap-form-default">
     <dl class="row">
       <dt class="tit">
-        <label for="invite">一级推荐佣金:</label
+        <label for="invite">一级推荐佣金:</label>
       </dt>
       <dd class="opt">
         <input type="text" value="<?php if($output['goodscommon_info']['invite1']){ echo $output['goodscommon_info']['invite1']; }else{ echo '0.00';}?>" name="invite1" id="invite1" class="input-txt">
@@ -23,7 +23,7 @@
     </dl>
         <dl class="row">
       <dt class="tit">
-        <label for="invite">三级推荐佣金:</label
+        <label for="invite">三级推荐佣金:</label>
       </dt>
       <dd class="opt">
         <input type="text" value="<?php if($output['goodscommon_info']['invite3']){ echo $output['goodscommon_info']['invite3']; }else{ echo '0.00';}?>" name="invite3" id="invite3" class="input-txt">
